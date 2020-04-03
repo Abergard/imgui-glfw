@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.8)
 project(imgui-glfw CXX)
 
+set(CMAKE_DEBUG_POSTFIX d)
+
 find_package(glfw3 REQUIRED)
 find_package(imgui REQUIRED)
 
@@ -18,12 +20,13 @@ target_link_libraries(${PROJECT_NAME}-opengl3
   glfw)
 
 install(TARGETS ${PROJECT_NAME}-opengl3
-    EXPORT ${PROJECT_NAME}
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib)
+  EXPORT ${PROJECT_NAME}
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib)
 
 install(DIRECTORY include/imgui-glfw
+  CONFIGURATIONS Release
   DESTINATION include)
 
 install(EXPORT ${PROJECT_NAME}
