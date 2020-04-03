@@ -5,12 +5,13 @@ find_package(glfw3 REQUIRED)
 find_package(imgui REQUIRED)
 
 add_library(${PROJECT_NAME}-opengl3
-  imgui-glfw.cpp
-  imgui_impl_glfw.cpp
-  imgui_impl_opengl3.cpp)
+  src/imgui-glfw.cpp
+  src/imgui_impl_glfw.cpp
+  src/imgui_impl_opengl3.cpp)
 
-target_include_directories(${PROJECT_NAME}-opengl3
-  PUBLIC include)
+target_include_directories(${PROJECT_NAME}-opengl3 PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/>
+  $<INSTALL_INTERFACE:include/>)
 
 target_link_libraries(${PROJECT_NAME}-opengl3
   imgui::imgui
