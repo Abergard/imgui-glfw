@@ -75,5 +75,11 @@ build_script:
 test_script:
   - cmake --build . --target install
 
+on_failure:
+- ps: Push-AppveyorArtifact C:\Tools\vcpkg\buildtrees\imgui\build-x86-windows-rel-out.log
+- ps: Push-AppveyorArtifact C:\Tools\vcpkg\buildtrees\imgui\build-x64-windows-rel-out.log
+- ps: Push-AppveyorArtifact C:\Tools\vcpkg\buildtrees\imgui\build-x86-windows-deb-out.log
+- ps: Push-AppveyorArtifact C:\Tools\vcpkg\buildtrees\imgui\build-x64-windows-deb-out.log
+
 matrix:
   fast_finish: true
