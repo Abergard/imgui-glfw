@@ -1,0 +1,26 @@
+diff --git a/ports/imgui/CONTROL b/ports/imgui/CONTROL
+index c1484ec8b..27046a235 100644
+--- a/ports/imgui/CONTROL
++++ b/ports/imgui/CONTROL
+@@ -1,5 +1,5 @@
+ Source: imgui
+-Version: 1.74
++Version: 1.75
+ Homepage: https://github.com/ocornut/imgui
+ Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
+ 
+diff --git a/ports/imgui/portfile.cmake b/ports/imgui/portfile.cmake
+index b9cb4eda3..0b717843b 100644
+--- a/ports/imgui/portfile.cmake
++++ b/ports/imgui/portfile.cmake
+@@ -5,8 +5,8 @@ vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
+ vcpkg_from_github(
+     OUT_SOURCE_PATH SOURCE_PATH
+     REPO ocornut/imgui
+-    REF bdce8336364595d1a446957a6164c97363349a53 # v1.74
+-    SHA512 148c949a4d1a07832e97dbf4b3333b728f7207756a95db633daad83636790abe0a335797b2c5a27938453727de43f6abb9f5a5b41909f223ee735ddd1924eb3f
++    REF 58b3e02b95b4c7c5bb9128a28c6d55546501bf93 # v1.75
++    SHA512 0e695b4ef8c7abbc18dfa35f471bc7923ed5257feba570196535edb17b8bebdca087f942d27a67f05415c5e12ff6361a090d849244a8df205ef97699c9ed5879
+     HEAD_REF master
+ )
+ 

@@ -24,9 +24,16 @@ matrix:
 install:
   - |
     set -e
-    git clone https://github.com/Microsoft/vcpkg.git ${DEPS_DIR}/vcpkg
+    if [ ! -d ${DEPS_DIR}/vcpkg ]
+    then
+        pushd ${DEPS_DIR}/vcpkg
+        git clone https://github.com/Microsoft/vcpkg.git ${DEPS_DIR}/vcpkg
+        ./bootstrap-vcpkg.sh
+        popd
+    fi
     pushd ${DEPS_DIR}/vcpkg
-    ./bootstrap-vcpkg.sh
+    git pull
+    git apply ${OLDPWD}/src/vcpkg_patch.diff
     echo -e '\nset(VCPKG_BUILD_TYPE release)' >> ./triplets/${VCPKG_TRIPLET}.cmake
     ./vcpkg install glad glfw3 imgui
     popd

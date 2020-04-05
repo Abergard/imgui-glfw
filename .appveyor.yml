@@ -45,6 +45,7 @@ install:
   - clang-cl -v
   - cd C:\Tools\vcpkg
   - git pull
+  - git apply %APPVEYOR_BUILD_FOLDER%/src/vcpkg_patch.diff
   - cd %APPVEYOR_BUILD_FOLDER%
   - vcpkg install glad:x86-windows glad:x64-windows glfw3:x86-windows glfw3:x64-windows imgui:x86-windows imgui:x64-windows
 
