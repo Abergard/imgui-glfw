@@ -2,6 +2,10 @@ sudo: required
 dist: bionic
 language: cpp
 
+env:
+  global:
+    - DEPS_DIR=${HOME}/deps
+
 matrix:
   include:
     - compiler: gcc
@@ -10,14 +14,12 @@ matrix:
           update: true
           sources:
             - ubuntu-toolchain-r-test
-            - sourceline: 'ppa:mhier/libboost-latest'
           packages:
-            - g++-8
-            - valgrind
-            - libglfw3-dev
+            - gcc-9
       env:
-      - C_COMPILER=gcc-8
-      - CXX_COMPILER=g++-8
+      - VCPKG_TRIPLET=x64-linux
+      - C_COMPILER=gcc-9
+      - CXX_COMPILER=g++-9
 
 install:
   - |
@@ -25,7 +27,8 @@ install:
     git clone https://github.com/Microsoft/vcpkg.git ${DEPS_DIR}/vcpkg
     pushd ${DEPS_DIR}/vcpkg
     ./bootstrap-vcpkg.sh
-    ./vcpkg install glad:x86-linux glad:x64-linux glfw3:x86-linux glfw3:x64-linux imgui:x86-linux imgui:x64-linux
+    echo -e '\nset(VCPKG_BUILD_TYPE release)' >> ./triplets/${VCPKG_TRIPLET}.cmake
+    ./vcpkg install glad glfw3 imgui
     popd
 
 cache:
