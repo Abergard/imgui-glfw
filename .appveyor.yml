@@ -45,14 +45,8 @@ install:
   - clang-cl -v
   - cd C:\Tools\vcpkg
   - git pull
-  - .\bootstrap-vcpkg.bat
   - cd %APPVEYOR_BUILD_FOLDER%
-  - vcpkg install glad:x86-windows
-  - vcpkg install glad:x64-windows
-  - vcpkg install glfw3:x86-windows
-  - vcpkg install glfw3:x64-windows
-  - vcpkg install imgui[example]:x86-windows
-  - vcpkg install imgui[example]:x64-windows
+  - vcpkg install glad:x86-windows glad:x64-windows glfw3:x86-windows glfw3:x64-windows imgui:x86-windows imgui:x64-windows
 
 before_build:
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
