@@ -24,18 +24,30 @@ matrix:
 install:
   - |
     set -e
+    echo "test 1"
     if [ ! -d ${DEPS_DIR}/vcpkg ]
     then
+        echo "test 2"
         pushd ${DEPS_DIR}/vcpkg
+        echo "test 3"
         git clone https://github.com/Microsoft/vcpkg.git ${DEPS_DIR}/vcpkg
+        echo "test 4"
         ./bootstrap-vcpkg.sh
+        echo "test 5"
         popd
     fi
     pushd ${DEPS_DIR}/vcpkg
+    echo "test 6"
+    pwd
+    ls -al
     git pull
+    echo "test 7"
     git apply ${OLDPWD}/src/vcpkg_patch.diff
+    echo "test 8"
     echo -e '\nset(VCPKG_BUILD_TYPE release)' >> ./triplets/${VCPKG_TRIPLET}.cmake
+    echo "test 9"
     ./vcpkg install glad glfw3 imgui
+    echo "test 10"
     popd
 
 cache:
