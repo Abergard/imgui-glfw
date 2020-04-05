@@ -14,8 +14,9 @@ matrix:
           update: true
           sources:
             - ubuntu-toolchain-r-test
+            - sourceline: 'ppa:mhier/libboost-latest'
           packages:
-            - gcc-8
+            - g++-8
             - libxinerama-dev
             - libxcursor-dev
             - xorg-dev
@@ -26,6 +27,8 @@ matrix:
       - CXX_COMPILER=g++-8
 
 install:
+  - export CC=${C_COMPILER}
+  - export CXX=${CXX_COMPILER}
   - |
     set -e
     mkdir -p ${DEPS_DIR}/vcpkg
@@ -48,7 +51,7 @@ script:
   - cmake --version
   - mkdir build
   - cd build
-  - env CC=${C_COMPILER} CXX=${CXX_COMPILER} cmake .. -DBUILD_EXAMPLES=ON -DCMAKE_TOOLCHAIN_FILE=${DEPS_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake
+  - cmake .. -DBUILD_EXAMPLES=ON -DCMAKE_TOOLCHAIN_FILE=${DEPS_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake
   - echo "We have" `nproc` "cores here"
   - make -j `nproc`
   - make -j `nproc` install
