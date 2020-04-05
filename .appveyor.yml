@@ -74,3 +74,6 @@ build_script:
 
 test_script:
   - cmake --build . --target install
+
+matrix:
+  fast_finish: true
