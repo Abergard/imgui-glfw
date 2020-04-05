@@ -14,11 +14,14 @@ matrix:
           packages:
             - g++-8
             - valgrind
+            - libglfw3-dev
       env:
       - C_COMPILER=gcc-8
       - CXX_COMPILER=g++-8
 
 script:
+  - which vcpkg
+  - vcpkg --version
   - cmake --version
   - mkdir build
   - cd build
