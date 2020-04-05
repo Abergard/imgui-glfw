@@ -1,0 +1,28 @@
+sudo: required
+dist: bionic
+language: cpp
+
+matrix:
+  include:
+    - compiler: gcc
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+            - sourceline: 'ppa:mhier/libboost-latest'
+          packages:
+            - g++-8
+            - valgrind
+      env:
+      - C_COMPILER=gcc-8
+      - CXX_COMPILER=g++-8
+
+script:
+  - cmake --version
+  - mkdir build
+  - cd build
+  - env CC=${C_COMPILER} CXX=${CXX_COMPILER} cmake .. -DBUILD_EXAMPLES=ON
+  - echo "We have" `nproc` "cores here"
+  - make -j `nproc`
+  - make -j `nproc` install

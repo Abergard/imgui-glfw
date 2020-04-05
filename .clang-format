@@ -17,7 +17,7 @@ BreakBeforeBinaryOperators: false
 BreakBeforeBraces: Allman
 BreakBeforeTernaryOperators: false
 BreakConstructorInitializersBeforeComma: false
-ColumnLimit: 79
+ColumnLimit: 110
 CommentPragmas: ''
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
 ConstructorInitializerIndentWidth: 4
@@ -46,11 +46,11 @@ Standard: Cpp11
 SortIncludes: true
 IncludeBlocks: Regroup
 IncludeCategories:
-  - Regex:           '<windows.h>'
+  - Regex:           '<windows.h|glad.h>'
     Priority:        1
   - Regex:           '<.+>'
     Priority:        2
-  - Regex:           '^"(gtest|gmock|boost|)/'
+  - Regex:           '^"(gtest|gmock|boost|imgui)/'
     Priority:        3
   - Regex:           '".+"'
     Priority:        10
