@@ -26,6 +26,7 @@ configuration:
 
 cache:
   - c:\projects\deps -> .appveyor.yml
+  - c:\tools\vcpkg\installed\
 
 install:
   - set NINJA_URL="https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-win.zip"
@@ -42,6 +43,16 @@ install:
 
   - ninja --version
   - clang-cl -v
+  - cd C:\Tools\vcpkg
+  - git pull
+  - .\bootstrap-vcpkg.bat
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - vcpkg install glad:x86-windows
+  - vcpkg install glad:x64-windows
+  - vcpkg install glfw:x86-windows
+  - vcpkg install glfw:x64-windows
+  - vcpkg install imgui[example]:x86-windows
+  - vcpkg install imgui[example]:x64-windows
 
 before_build:
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
@@ -57,6 +68,7 @@ build_script:
                      -DCMAKE_CXX_COMPILER=%CXX_COMPILER%
                      -DCMAKE_C_COMPILER=%C_COMPILER%
                      -DBUILD_EXAMPLES=ON
+                     -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
 
   - cmake --build . --config %CONFIGURATION% -j 2
 
