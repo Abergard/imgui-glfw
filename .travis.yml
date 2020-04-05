@@ -16,6 +16,10 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - gcc-9
+            - libxinerama-dev
+            - libxcursor-dev
+            - xorg-dev
+            - libglu1-mesa-dev
       env:
       - VCPKG_TRIPLET=x64-linux
       - C_COMPILER=gcc-9
@@ -32,6 +36,7 @@ install:
     git checkout -b master origin/master
     ./bootstrap-vcpkg.sh
     git apply ${OLDPWD}/src/vcpkg_patch.diff
+    echo -e '\nset(VCPKG_BUILD_TYPE release)' >> ./triplets/${VCPKG_TRIPLET}.cmake
     ./vcpkg install glad glfw3 imgui
     popd
 
