@@ -15,15 +15,15 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - gcc-9
+            - gcc-8
             - libxinerama-dev
             - libxcursor-dev
             - xorg-dev
             - libglu1-mesa-dev
       env:
       - VCPKG_TRIPLET=x64-linux
-      - C_COMPILER=gcc-9
-      - CXX_COMPILER=g++-9
+      - C_COMPILER=gcc-8
+      - CXX_COMPILER=g++-8
 
 install:
   - |
